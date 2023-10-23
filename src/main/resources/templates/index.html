@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        .error{
+        color: red;
+        font-size: 0.8rem;
+        }
+        label {
+        display: block;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Java Bank</h1>
+<form action="#" method="post" th:action="@{/register}" th:object="${client}">
+    <label>
+        Imię
+        <input type="text" placeholder="John" th:field="*{firstName}">
+    </label>
+    <p th:errors="*{firstName}" class="error">Błędy związane z imieniem</p>
+    <label>
+        Nazwisko
+        <input type="text" placeholder="Snow" th:field="*{lastName}">
+    </label>
+    <p th:errors="*{lastName}" class="error">Błędy związane z nazwiskiem</p>
+    <label>
+        Email
+        <input type="email" placeholder="youknow@nothing.com" th:field="*{email}">
+    </label>
+    <p th:errors="*{email}" class="error">Błędny adres email</p>
+    <label>
+        Wiek
+        <input type="number" placeholder="25" th:field="*{age}">
+    </label>
+    <p th:errors="*{age}" class="error">Błędny wiek</p>
+    <button type="submit">Zarejestruj</button>
+</form>
+
+</body>
+</html>

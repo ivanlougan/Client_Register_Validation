@@ -10,12 +10,16 @@ import java.util.List;
 @Component
 public class ClientService {
     private final ClientRepository clientRepository;
+    private final ClientDtoMapper clientDtoMapper;
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, ClientDtoMapper clientDtoMapper) {
         this.clientRepository = clientRepository;
+        this.clientDtoMapper = clientDtoMapper;
     }
 
-    public void register(Client client) {
+
+    public void register(ClientDto clientDto) {
+        Client client = clientDtoMapper.map(clientDto);
         String uniqueUsername = generateUsername(client);
         client.setUsername(uniqueUsername);
         clientRepository.save(client);

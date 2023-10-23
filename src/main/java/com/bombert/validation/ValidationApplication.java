@@ -13,20 +13,7 @@ import java.util.Set;
 public class ValidationApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext ctx = SpringApplication.run(ValidationApplication.class, args);
-		ClientService clientService = ctx.getBean(ClientService.class);
-
-		Client client = new Client("Jan", "Kowalski", "kowaljan@abc.com", -10);
-		try {
-			clientService.register(client);
-			System.out.println("Rejestracja powiodła się: " + client);
-		} catch(ConstraintViolationException cve) {
-			Set<ConstraintViolation<?>> errors = cve.getConstraintViolations();
-			System.out.printf("Rejestracja nie powiodła się %s\n", client);
-			errors.stream()
-					.map(err -> " >" + err.getPropertyPath() + " " + err.getInvalidValue() + " " + err.getMessage())
-					.forEach(System.out::println);
-		}
+		SpringApplication.run(ValidationApplication.class, args);
 	}
 
 }
